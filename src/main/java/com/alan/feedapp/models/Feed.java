@@ -5,13 +5,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name="Feed")
+@XmlRootElement
 public class Feed {
 
 	@Id
-	@GeneratedValue(strategy= GenerationType.AUTO)
+	@GeneratedValue
 	private long id;
 	private String feedName;
 	private String feedUrl;
@@ -23,11 +25,27 @@ public class Feed {
 		this.feedUrl = feedUrl;
 	}
 
-	@Override
-	public String toString() {
-		return String.format(
-				"Feed[id=%d, firstName='%s', lastName='%s']",
-				id, feedName, feedUrl);
+	public long getId() {
+		return id;
 	}
 
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getFeedName() {
+		return feedName;
+	}
+
+	public void setFeedName(String feedName) {
+		this.feedName = feedName;
+	}
+
+	public String getFeedUrl() {
+		return feedUrl;
+	}
+
+	public void setFeedUrl(String feedUrl) {
+		this.feedUrl = feedUrl;
+	}
 }
