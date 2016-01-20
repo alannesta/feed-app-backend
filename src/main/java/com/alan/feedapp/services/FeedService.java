@@ -19,4 +19,8 @@ public class FeedService {
 		List<Feed> allFeeds = (List<Feed>)feedRepository.findAll();
 		return allFeeds;
 	}
+
+	public Feed saveFeed(Feed feed) {
+		return feedRepository.save(feed);
+	}
 }
