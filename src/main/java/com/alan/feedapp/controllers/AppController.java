@@ -41,7 +41,7 @@ public class AppController {
 		response.put("feeds", feedService.getAllFeeds());
 		return response;
 	}
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(value = "/feed", method = RequestMethod.POST)
 	public Map<String, Object> saveFeed(@RequestBody Map<String, Object> feedMap){
 		Feed feed = new Feed(feedMap.get("feedName").toString(),
 				feedMap.get("feedUrl").toString());
