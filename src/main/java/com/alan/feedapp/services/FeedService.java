@@ -23,4 +23,13 @@ public class FeedService {
 	public Feed saveFeed(Feed feed) {
 		return feedRepository.save(feed);
 	}
+
+	public String deleteFeed(String feedId) {
+		try {
+			feedRepository.delete(Long.parseLong(feedId, 10));
+			return "Delete Success";
+		} catch (Exception e) {
+			return "Fail to delete";
+		}
+	}
 }

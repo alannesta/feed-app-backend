@@ -7,6 +7,7 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -48,6 +49,15 @@ public class AppController {
 		Map<String, Object> response = new LinkedHashMap<String, Object>();
 		response.put("message", "Feed saved successfully");
 		response.put("feed", feedService.saveFeed(feed));
+		return response;
+	}
+
+	@RequestMapping(method = RequestMethod.DELETE, value="/feed/{feedId}")
+	public Map<String, String> deleteFeed(@PathVariable("feedId") String feedId){
+		String result = feedService.deleteFeed(feedId);
+		Map<String, String> response = new HashMap<String, String>();
+		response.put("message", result);
+
 		return response;
 	}
 }
