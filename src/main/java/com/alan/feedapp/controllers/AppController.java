@@ -8,6 +8,8 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,7 +50,7 @@ public class AppController {
 //		return response;
 //	}
 	@RequestMapping(value = "/feed", method = RequestMethod.POST)
-	public Map<String, Object> saveFeed(@RequestBody Map<String, Object> feedMap) {
+	public ResponseEntity<?> saveFeed(@RequestBody Map<String, Object> feedMap) {
 		Feed feed = new Feed(feedMap.get("name").toString(),
 				feedMap.get("feedUrl").toString());
 
@@ -56,10 +58,12 @@ public class AppController {
 		try {
 			feedService.saveFeed(feed);
 			response.put("message", "Feed saved successfully");
+			return new ResponseEntity<Object>(response, HttpStatus.OK);
+
 		} catch (Exception e){
 			response.put("message", "Feed already exists");
+			return new ResponseEntity<Object>(response, HttpStatus.BAD_REQUEST);
 		}
-		return response;
 	}
 
 	@RequestMapping(method = RequestMethod.DELETE, value = "/feed/{feedId}")
