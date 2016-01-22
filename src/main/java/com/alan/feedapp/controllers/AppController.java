@@ -53,8 +53,12 @@ public class AppController {
 				feedMap.get("feedUrl").toString());
 
 		Map<String, Object> response = new LinkedHashMap<String, Object>();
-		response.put("message", "Feed saved successfully");
-		response.put("feed", feedService.saveFeed(feed));
+		try {
+			feedService.saveFeed(feed);
+			response.put("message", "Feed saved successfully");
+		} catch (Exception e){
+			response.put("message", "Feed already exists");
+		}
 		return response;
 	}
 

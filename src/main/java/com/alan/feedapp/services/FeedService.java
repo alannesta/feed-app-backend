@@ -20,8 +20,14 @@ public class FeedService {
 		return allFeeds;
 	}
 
-	public Feed saveFeed(Feed feed) {
-		return feedRepository.save(feed);
+	public Feed saveFeed(Feed feed) throws Exception{
+
+		List<Feed> exist = feedRepository.findByFeedUrl(feed.getFeedUrl());
+		if (exist.size() > 0) {
+			throw new Exception("Already exists");
+		} else {
+			return feedRepository.save(feed);
+		}
 	}
 
 	public String deleteFeed(String feedId) {
