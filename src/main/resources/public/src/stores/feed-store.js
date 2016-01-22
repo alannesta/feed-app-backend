@@ -48,7 +48,7 @@ AppDispatcher.register(function(action) {
 		case 'TOGGLE_FEED_ACTIONS':
 			var idx = -1;
 			_feedsState.allFeeds.forEach(function(item, index) {
-				if (item._id === action.feed._id) {
+				if (item.id === action.feed.id) {
 					idx = index;
 				}
 			});

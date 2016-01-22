@@ -4,7 +4,7 @@ var ViewActions = require('./view-actions');
 
 var FeedActions = {
 	fetch: function() {
-		return fetch('/api/feeds').then(function(res) {
+		return fetch('/feeds').then(function(res) {
 			return res.json()
 		}).then(function(data) {
 			AppDispatcher.dispatch({
@@ -51,7 +51,7 @@ var FeedActions = {
 
 	subscribeFeed: function(feed) {
 		var actions = this;
-		return fetch('/api/feed', {
+		return fetch('/feed', {
 			method: 'post',
 			headers: {
 				'Accept': 'application/json',
@@ -81,7 +81,7 @@ var FeedActions = {
 
 	deleteFeed: function(feed, reselect) {
 		var actions = this;
-		return fetch('/api/feed/' + feed._id, {
+		return fetch('/feed/' + feed.id, {
 			method: 'delete'
 		}).then(function(res) {
 			if (res.status !== 200) {

@@ -9,7 +9,7 @@ var FeedItem = React.createClass({
 	},
 
 	deleteFeed: function () {
-		var reselectFlag = this.props.selected._id === this.props.feed._id;
+		var reselectFlag = this.props.selected.id === this.props.feed.id;
 		FeedActions.deleteFeed(this.props.feed, reselectFlag);
 	},
 
@@ -25,7 +25,7 @@ var FeedItem = React.createClass({
 
 	render: function () {
 		var selectedClass = classNames({
-			'selected': this.props.selected._id === this.props.feed._id,
+			'selected': this.props.selected.id === this.props.feed.id,
 			'feed-nav-item': true
 		});
 
@@ -36,7 +36,7 @@ var FeedItem = React.createClass({
 		return (
 			<li className={selectedClass} onMouseEnter={this.showActions}
 				onMouseLeave={this.hideActions}>
-				<section id="content"  onClick={this.selectFeed}>{this.props.feed.name}</section>
+				<section id="content"  onClick={this.selectFeed}>{this.props.feed.feedName}</section>
 				<section id="actions" className={feedAction}>
 					<button onClick={this.deleteFeed}>Delete</button>
 				</section>
