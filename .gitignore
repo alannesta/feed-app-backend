@@ -1,2 +1,4 @@
 target
 *.iml
+src/main/resources/node_modules
+src/main/resources/node
