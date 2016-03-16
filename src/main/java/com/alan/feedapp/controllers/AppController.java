@@ -56,9 +56,8 @@ public class AppController {
 
 		Map<String, Object> response = new LinkedHashMap<String, Object>();
 		try {
-			feedService.saveFeed(feed);
-			response.put("message", "Feed saved successfully");
-			return new ResponseEntity<Object>(response, HttpStatus.OK);
+			Feed savedFeed = feedService.saveFeed(feed);
+			return new ResponseEntity<Object>(savedFeed, HttpStatus.OK);
 
 		} catch (Exception e){
 			response.put("message", "Feed already exists");
